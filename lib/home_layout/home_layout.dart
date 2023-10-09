@@ -1,4 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todo/providers/my_provider.dart';
+import 'package:todo/screens/login/login_screen.dart';
 import 'package:todo/screens/settings_screen.dart';
 import 'package:todo/screens/task_screen.dart';
 import 'package:todo/screens/widgets/show_add_task_bottom_sheet.dart';
@@ -17,11 +21,18 @@ class _HomeLayoutState extends State<HomeLayout> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<MyProvider>(context);
     return Scaffold(
       extendBody: true,
       //to see the background
       appBar: AppBar(
-        title: Text("To Do List", style: bodyLarge),
+        title: Text("To Do List ${provider.myUser?.name}", style: bodyLarge),
+        actions: [
+          IconButton(onPressed: () {
+            provider.logout();
+            Navigator.pushReplacementNamed(context, LoginScreen.routeName);
+          }, icon: Icon(Icons.logout))
+        ],
       ),
       bottomNavigationBar: BottomAppBar(
         //to make notch margin

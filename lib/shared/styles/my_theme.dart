@@ -14,7 +14,7 @@ class MyThemeData {
     scaffoldBackgroundColor: lightGreenColor,
     appBarTheme: AppBarTheme(
         backgroundColor: lightColor,
-        iconTheme: IconThemeData(color: lightColor)),
+        iconTheme: IconThemeData(color: Colors.white)),
   );
   static ThemeData darkTheme = ThemeData();
 }
